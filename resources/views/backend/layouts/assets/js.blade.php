@@ -32,3 +32,5 @@
 <script src="{{ asset('backend') }}/dist/js/pages/dashboard.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="{{ asset('backend') }}/dist/js/demo.js"></script>
+  <!-- sweet alert -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>

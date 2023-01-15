@@ -35,40 +35,32 @@
             <!-- Custom tabs (Charts with tabs)-->
             <div class="card" >
               <div class="card-header">
-               <h3>Create Partner
+               <h3>Edit Partner
 
                <a class="btn btn-success btn-sm float-right" href="{{route('partners.index')}}"><i class="fa fa-list"></i>&nbsp;Partner List</a>
                 </h3>
 
               </div><!-- /.card-header -->
-              <form action="{{ route('partners.store') }}" method="POST" enctype="multipart/form-data">
+              <form action="{{ route('partners.update',$user->id) }}" method="POST" enctype="multipart/form-data">
                 @csrf
+                @method('PATCH')
                 <div class="card-body">
+                    <input type="hidden" name="id" value="{{ $user->id }}">
                     <div class="row">
                         <div class="form-group col-md-4">
                             <label for="name">Name</label>
-                            <input type="text" name="name" value="{{  old('name') }}" class="form-control" placeholder="please enter your name">
+                            <input type="text" name="name" value="{{  $user->name }}" class="form-control" placeholder="please enter your name">
                             <font style="color:red">{{($errors->has('name'))?($errors->first('name')):' '}}</font>
                         </div>
                         <div class="form-group col-md-4">
                             <label for="email">Email</label>
-                            <input type="email" name="email" id="email" value="{{  old('email') }}" class="form-control" placeholder="please enter your email">
+                            <input type="email" name="email" id="email" value="{{  $user->email }}" class="form-control" placeholder="please enter your email">
                             <font style="color:red">{{($errors->has('email'))?($errors->first('email')):' '}}</font>
                         </div>
                         <div class="form-group col-md-4">
                             <label for="email">Phone</label>
-                            <input type="number" name="phone" id="email" value="{{  old('phone') }}" class="form-control" placeholder="please enter your phone">
+                            <input type="number" name="phone" id="email" value="{{  $user->phone }}" class="form-control" placeholder="please enter your phone">
                             <font style="color:red">{{($errors->has('phone'))?($errors->first('phone')):' '}}</font>
-                        </div>
-                        <div class="form-group col-md-4">
-                            <label for="password">Password</label>
-                            <input type="password" name="password" id="password" class="form-control" placeholder="please enter your password">
-                            <font style="color:red">{{($errors->has('password'))?($errors->first('password')):' '}}</font>
-                        </div>
-                        <div class="form-group col-md-4">
-                            <label for="password">Confirm Password</label>
-                            <input type="password" name="confirm_password" id="password2" class="form-control" placeholder="please enter your confirm password">
-                            <font style="color:red">{{($errors->has('confirm_password'))?($errors->first('confirm_password')):' '}}</font>
                         </div>
                         <div class="form-group col-md-4">
                             <label for="image">Image</label>

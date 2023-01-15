@@ -24,7 +24,10 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::resource('users', UserController::class);
+
 Route::resource('partners', PartnerController::class);
+Route::get('partners/change-status/{partner_id}', [PartnerController::class,'changeStatus'])->name('partner.status.change');
+
 Route::resource('partner-users', PartnerUserController::class);
 Route::get('partner-user/{partner_id:partner_id}', [PartnerUserController::class,'create'])->name('partner.user.create');
 

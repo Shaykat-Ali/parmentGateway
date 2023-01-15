@@ -43,7 +43,7 @@ class UserController extends Controller
         if($user->save()){
             return redirect()->route('users.index')->with('success','User Created Successfully');
         }else{
-            return redirect()->back()->with('success','Failed');
+            return redirect()->back()->with('error','Failed');
         }
     }
 

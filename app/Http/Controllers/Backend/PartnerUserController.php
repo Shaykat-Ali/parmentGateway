@@ -39,7 +39,7 @@ class PartnerUserController extends Controller
         if($user->save()){
             return redirect()->route('partners.show',$request->partner_id)->with('success','Partner\'s User Created Successfully');
         }else{
-            return redirect()->back()->with('success','Failed');
+            return redirect()->back()->with('error','Failed');
         }
 
     }
