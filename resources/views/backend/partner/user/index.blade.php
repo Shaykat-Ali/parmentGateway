@@ -57,12 +57,11 @@
                     <table id="example1" class="table table-bordered table-hover " width="100%" >
                         <thead style="color:brown;background:#B2beb5">
                             <tr>
-                            <th width="10%">Image</th>
-                            <th width="20%">Name</th>
-                            <th width="20%">Email</th>
-                            <th width="20%">Phone</th>
-                            <th width="15%">Role</th>
-                            <th width="15%">Action</th>
+                            <th width="15%">Image</th>
+                            <th width="25%">Name</th>
+                            <th width="25%">Email</th>
+                            <th width="25%">Phone</th>
+                            <th width="10%">Action</th>
                             </tr>
                         </thead>
                         <tbody style="color:#660033">
@@ -72,12 +71,10 @@
                             <td>{{ $user->name ?? '---' }}</td>
                             <td>{{ $user->email }}</td>
                             <td>{{ $user->phone ?? '---' }}</td>
-                            <td>{{ $user->user_type ?? '---' }}</td>
-
                             <td>
-                                <a title="Edit" class="btn btn-primary btn-sm" href="{{route('partner-users.edit',$user->id)}}"><i class="fa fa-edit"></i></a>
+                                <a title="Edit" class="btn btn-primary btn-sm" href="{{route('partner.user.edit',[$user->id , $partnerId])}}"><i class="fa fa-edit"></i></a>
                                 {{-- <a title="Details" class="btn btn-success btn-sm" href="{{route('partners.show',$user->id)}}"><i class="fa fa-eye"></i></a> --}}
-                                <a title="Delete" onclick="return confirm('Are you sure to delete!!')" class="btn btn-danger btn-sm" href="{{route('partner-users.destroy',$user->id)}}"><i class="fa fa-trash"></i></a>
+                                {{-- <a title="Delete" onclick="return confirm('Are you sure to delete!!')" class="btn btn-danger btn-sm" href="{{route('partner-users.destroy',$user->id)}}"><i class="fa fa-trash"></i></a> --}}
                             </td>
 
                             </tr>

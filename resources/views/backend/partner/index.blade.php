@@ -1,5 +1,13 @@
 @extends('backend.layouts.app')
 @push('css')
+<style>
+   .select2-container {
+    width: 100% !important;
+    padding: 5px 0px;
+
+}
+
+</style>
 @endpush
 @section('content')
 
@@ -58,11 +66,12 @@
                         <thead style="color:brown;background:#B2beb5">
                             <tr>
                             <th width="10%">Image</th>
-                            <th width="20%">Name</th>
-                            <th width="20%">Email</th>
-                            <th width="20%">Phone</th>
-                            <th width="15%">Status</th>
-                            <th width="15%">Action</th>
+                            <th width="15%">Name</th>
+                            <th width="15%">Email</th>
+                            <th width="15%">Phone</th>
+                            <th width="15%">Affiliate</th>
+                            <th width="10%">Status</th>
+                            <th width="20%">Action</th>
                             </tr>
                         </thead>
                         <tbody style="color:#660033">
@@ -72,6 +81,7 @@
                             <td>{{ $user->name ?? '---' }}</td>
                             <td>{{ $user->email }}</td>
                             <td>{{ $user->phone ?? '---' }}</td>
+                            <td>{{ $user->affiliate?->name ?? '---' }}</td>
                             <td>
                                 @if($user->status == 2)
                                   <span class="badge bg-info pr-2 pl-3">Pending</span>
@@ -88,6 +98,8 @@
                                 <a title="Edit" class="btn btn-primary btn-sm" href="{{route('partners.edit',$user->id)}}"><i class="fa fa-edit"></i></a>
                                 <a title="Details" class="btn btn-success btn-sm" href="{{route('partners.show',$user->id)}}"><i class="fa fa-eye"></i></a>
                                 <a data-route="{{ route('partner.status.change',$user->id) }}" title="@if($user->status == 2)Approve @endif  @if($user->status == 1)  Inactive @endif  @if($user->status == 0)Active @endif"  class="btn btn-secondary btn-sm confirm-status" href="javascript:void(0)"><i class="fa fa-check-circle"></i></a>
+                                <a title="Assign Affiliate" data-toggle="modal" data-target="#affiliate-modal-{{ $user->id }}" class="btn btn-info btn-sm" href="#"><i class="fa fa-user"></i></a>
+                                @include('backend.modal.assign-affiliate')
                             </td>
 
                             </tr>
@@ -120,4 +132,9 @@
 @endsection
 @push('js')
   <script src="{{ asset('backend/sweetalert-script.js') }}"></script>
+  <script>
+    $('.select2').select2({
+        dropdownParent: $(this).data('value')
+    });
+</script>
 @endpush

@@ -26,10 +26,14 @@ class UserRequest extends FormRequest
         $rules = [
             'user_type' => 'required',
             'name' => 'required',
-            'email' => 'required|unique:users,email,'.$this->id,
-            'password' => 'required|min:6',
-            'confirm_password' => 'required_with:password|same:password',
+            'email' => 'required|unique:users,email,'.$this->id
         ];
+
+        if($this->method() != 'PATCH'){
+            $rules['password'] = 'required|min:6';
+            $rules['confirm_password'] = 'required_with:password|same:password';
+        }
+
         return $rules;
     }
 }

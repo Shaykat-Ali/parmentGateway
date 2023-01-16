@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Http\Requests\PartnerRequest;
 use Illuminate\Support\Facades\Storage;
 use File;
+use App\Models\Affiliate;
 
 
 class PartnerController extends Controller
@@ -17,7 +18,8 @@ class PartnerController extends Controller
     {
         $users = User::whereIn('role' , [3])->orderBy('id','desc')->paginate(10);
         return view('backend.partner.index',[
-           'users' => $users
+           'users' => $users,
+           'affiliates' => Affiliate::orderBy('id','desc')->get()
         ]);
     }
 
@@ -101,6 +103,12 @@ class PartnerController extends Controller
             return redirect()->back()->with('error','Failed');
         }
 
+    }
+
+    public function assignAffiliate(Request $request , $userId){
+        $user = User::findOrFail($userId);
+        $user->update(['affiliate_id' => $request->affiliate_id]);
+        return redirect()->route('partners.index')->with('success','Affiliate Assigned Successfully');
     }
 
     private function deleteFile($path)

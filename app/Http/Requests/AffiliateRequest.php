@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class PartnerUserRequest extends FormRequest
+class AffiliateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,16 +23,11 @@ class PartnerUserRequest extends FormRequest
      */
     public function rules()
     {
-
         $rules = [
             'name' => 'required',
-            'email' => 'required|unique:users,email,'.$this->id
+            'email' => 'required|unique:affiliates,email,'.$this->id
         ];
 
-        if($this->method() != 'PATCH'){
-            $rules['password'] = 'required|min:6';
-            $rules['confirm_password'] = 'required_with:password|same:password';
-        }
         return $rules;
     }
 }

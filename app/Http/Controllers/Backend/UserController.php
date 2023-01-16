@@ -47,38 +47,34 @@ class UserController extends Controller
         }
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function show($id)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
-        //
+        $user = User::findOrFail($id);
+        return view('backend.user.edit',[
+            'user' => $user
+        ]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
+
+    public function update(UserRequest $request, $id)
     {
-        //
+        $user = User::findOrFail($id);
+        $user->fill($request->all());
+        $user->role = $request->user_type == 'Admin' ? 1 : 2;
+        if($request->hasFile('image')){
+            $user->image = Storage::put('user',$request->file('image'));
+        }
+        if($user->save()){
+            return redirect()->route('users.index')->with('success','User Updated Successfully');
+        }else{
+            return redirect()->back()->with('error','Failed');
+        }
     }
 
     /**

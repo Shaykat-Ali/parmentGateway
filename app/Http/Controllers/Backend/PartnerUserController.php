@@ -50,35 +50,34 @@ class PartnerUserController extends Controller
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
+
+    public function edit($user_id , $partner_id)
     {
-        //
+        $user = User::findOrFail($user_id);
+        return view('backend.partner.user.edit',[
+            'user' => $user,
+            'partner_id' => $partner_id
+        ]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
+
+    public function update(PartnerUserRequest $request, $id)
     {
-        //
+        $user = User::findOrFail($id);
+        $user->fill($request->all());
+        $user->role = 4;
+        $user->created_by = $request->partner_id;
+        if($request->hasFile('image')){
+            $user->image = Storage::put('user',$request->file('image'));
+        }
+        if($user->save()){
+            return redirect()->route('partners.show',$request->partner_id)->with('success','Partner\'s User Updated Successfully');
+        }else{
+            return redirect()->back()->with('error','Failed');
+        }
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function destroy($id)
     {
         //

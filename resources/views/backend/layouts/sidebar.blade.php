@@ -43,9 +43,26 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{{ route('partners.index') }}" class="nav-link active">
+                <a href="{{ route('partners.index') }}" class="nav-link ">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Partner Management</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item has-treeview menu-open">
+            <a href="#" class="nav-link ">
+              <i class="fa fa-user"></i>
+              <p>
+                Affiliate
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{ route('affiliates.index') }}" class="nav-link ">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Affiliate Management</p>
                 </a>
               </li>
             </ul>
@@ -60,7 +77,7 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{{ route('users.index') }}" class="nav-link active">
+                <a href="{{ route('users.index') }}" class="nav-link ">
                   <i class="far fa-circle nav-icon"></i>
                   <p>User Management</p>
                 </a>

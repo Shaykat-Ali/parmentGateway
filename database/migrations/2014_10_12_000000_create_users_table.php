@@ -23,8 +23,9 @@ return new class extends Migration
             $table->string('user_type')->nullable();
             $table->string('image')->nullable();
             $table->integer('role')->default(0)->comment('1=Admin , 2=User, 3=Partner , 4=partner user');
-            $table->tinyInteger('status')->default(1)->comment('0=active , 1=inactive , 2 = pending');
+            $table->tinyInteger('status')->default(1)->comment('1=active , 0=inactive , 2 = pending');
             $table->integer('created_by')->nullable();
+            $table->integer('affiliate_id')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

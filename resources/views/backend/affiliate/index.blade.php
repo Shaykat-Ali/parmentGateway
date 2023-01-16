@@ -10,12 +10,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Manage User</h1>
+            <h1 class="m-0 text-dark">Manage Affiliate</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="{{url('home')}}">Home</a></li>
-              <li class="breadcrumb-item active" style="color:#ff3300">user</li>
+              <li class="breadcrumb-item active" style="color:#ff3300">affiliate</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -48,36 +48,29 @@
             <div class="card" >
 
                 <div class="card-header">
-                    <h3>User List
-                    <a class="btn btn-success btn-sm float-right" href="{{route('users.create')}}"><i class="fa fa-plus-circle"></i>&nbsp;Add User</a>
+                    <h3>Affiliate List
+                    <a class="btn btn-success btn-sm float-right" href="{{route('affiliates.create')}}"><i class="fa fa-plus-circle"></i>&nbsp;Add Affiliate</a>
                     </h3>
                 </div>
 
                 <div class="card-body">
-                    <table id="example1" class="table table-bordered table-hover " width="100%" >
+                    <table id="example1" class="table table-bordered table-hover table-sm text-center" width="100%" >
                         <thead style="color:brown;background:#B2beb5">
                             <tr>
-                            <th width="10%">Image</th>
-                            <th width="20%">Name</th>
-                            <th width="20%">Email</th>
-                            <th width="20%">Phone</th>
-                            <th width="15%">Role</th>
-                            <th width="15%">Action</th>
+                            <th width="30%">Name</th>
+                            <th width="30%">Email</th>
+                            <th width="30%">Phone</th>
+                            <th width="10%">Action</th>
                             </tr>
                         </thead>
                         <tbody style="color:#660033">
-                            @foreach($users as $key => $user)
+                            @foreach($affiliates as $key => $affiliate)
                             <tr>
-                            <td><img src="{{ $user->image ? asset('storage/'.$user->image) : asset('user.png') }}" alt="user" width="50px" height="50px" /></td>
-                            <td>{{ $user->name ?? '---' }}</td>
-                            <td>{{ $user->email }}</td>
-                            <td>{{ $user->phone ?? '---' }}</td>
-                            <td>{{ $user->user_type ?? '---' }}</td>
-
+                            <td>{{ $affiliate->name ?? '---' }}</td>
+                            <td>{{ $affiliate->email }}</td>
+                            <td>{{ $affiliate->phone ?? '---' }}</td>
                             <td>
-                                <a title="Edit" class="btn btn-primary btn-sm" href="{{route('users.edit',$user->id)}}"><i class="fa fa-edit"></i></a>
-                                {{-- <a title="Details" class="btn btn-success btn-sm" href="{{route('users.show',$user->id)}}"><i class="fa fa-eye"></i></a> --}}
-                                {{-- <a title="Delete" onclick="return confirm('Are you sure to delete!!')" class="btn btn-danger btn-sm" href="{{route('users.destroy',$user->id)}}"><i class="fa fa-trash"></i></a> --}}
+                                <a title="Edit" class="btn btn-primary btn-sm" href="{{route('affiliates.edit',$affiliate->id)}}"><i class="fa fa-edit"></i></a>
                             </td>
 
                             </tr>
@@ -87,7 +80,7 @@
                     </table>
                     <div class="row d-flex justify-content-between mt-4 col-md-12" style="text-align: right">
 
-                           {{ $users->appends(Request::all())->links() }}
+                           {{ $affiliates->appends(Request::all())->links() }}
 
                     </div>
                 </div>

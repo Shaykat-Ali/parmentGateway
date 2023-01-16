@@ -22,14 +22,13 @@ class User extends Authenticatable
         'email',
         'password',
         'user_type',
-        'phone'
+        'phone',
+        'affiliate_id'
     ];
 
-    /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var array<int, string>
-     */
+    public function affiliate(){
+        return $this->belongsTo(Affiliate::class,'affiliate_id','id');
+    }
     protected $hidden = [
         'password',
         'remember_token',

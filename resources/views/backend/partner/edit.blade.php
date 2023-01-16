@@ -46,6 +46,7 @@
                 @method('PATCH')
                 <div class="card-body">
                     <input type="hidden" name="id" value="{{ $user->id }}">
+
                     <div class="row">
                         <div class="form-group col-md-4">
                             <label for="name">Name</label>
@@ -70,7 +71,7 @@
                 </div>
                 <div class="card-footer">
                     <div style="text-align: right">
-                        <button type="submit"   class="btn btn-primary">Submit</button>
+                        <button type="submit"   class="btn btn-primary">Update</button>
                     </div>
                 </div>
               </form>
