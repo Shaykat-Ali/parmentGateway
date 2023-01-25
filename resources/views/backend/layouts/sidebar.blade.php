@@ -24,8 +24,8 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-          <li class="nav-item has-treeview menu-open">
-            <a href="#" class="nav-link active">
+          <li class="nav-item has-treeview {{ menu_open_if_match('home') }}">
+            <a href="{{ url('/home') }}" class="nav-link {{active_if_match('home') }}">
               <i class="fa fa-home"></i>
               <p>
                 Dashboard
@@ -33,7 +33,7 @@
               </p>
             </a>
           </li>
-          <li class="nav-item has-treeview menu-open">
+          <li class="nav-item has-treeview {{ menu_open_if_match('partners') }}">
             <a href="#" class="nav-link ">
               <i class="fa fa-user"></i>
               <p>
@@ -43,14 +43,14 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{{ route('partners.index') }}" class="nav-link ">
+                <a href="{{ route('partners.index') }}" class="nav-link {{active_if_match('partners') }}">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Partner Management</p>
                 </a>
               </li>
             </ul>
           </li>
-          <li class="nav-item has-treeview menu-open">
+          <li class="nav-item has-treeview {{ menu_open_if_match('affiliates') }}">
             <a href="#" class="nav-link ">
               <i class="fa fa-user"></i>
               <p>
@@ -60,26 +60,26 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{{ route('affiliates.index') }}" class="nav-link ">
+                <a href="{{ route('affiliates.index') }}" class="nav-link {{active_if_match('affiliates') }}">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Affiliate Management</p>
                 </a>
               </li>
             </ul>
           </li>
-          <li class="nav-item has-treeview menu-open">
+          <li class="nav-item has-treeview {{ menu_open_if_match('users') }}">
             <a href="#" class="nav-link ">
-              <i class="fa fa-user"></i>
+              <i class="fa fa-cogs"></i>
               <p>
-                User
+                Setting
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{{ route('users.index') }}" class="nav-link ">
+                <a href="{{ route('users.index') }}" class="nav-link {{ active_if_match('users') }}">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>User Management</p>
+                  <p>User</p>
                 </a>
               </li>
             </ul>

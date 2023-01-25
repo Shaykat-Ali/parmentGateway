@@ -98,8 +98,10 @@
                                 <a title="Edit" class="btn btn-primary btn-sm" href="{{route('partners.edit',$user->id)}}"><i class="fa fa-edit"></i></a>
                                 <a title="Details" class="btn btn-success btn-sm" href="{{route('partners.show',$user->id)}}"><i class="fa fa-eye"></i></a>
                                 <a data-route="{{ route('partner.status.change',$user->id) }}" title="@if($user->status == 2)Approve @endif  @if($user->status == 1)  Inactive @endif  @if($user->status == 0)Active @endif"  class="btn btn-secondary btn-sm confirm-status" href="javascript:void(0)"><i class="fa fa-check-circle"></i></a>
+                                @if($user->affiliate_id == null)
                                 <a title="Assign Affiliate" data-toggle="modal" data-target="#affiliate-modal-{{ $user->id }}" class="btn btn-info btn-sm" href="#"><i class="fa fa-user"></i></a>
                                 @include('backend.modal.assign-affiliate')
+                                @endif
                             </td>
 
                             </tr>

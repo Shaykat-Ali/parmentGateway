@@ -16,7 +16,10 @@ use App\Http\Controllers\Backend\AffiliateController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+Route::get('/cache',function(){
+    \Illuminate\Support\Facades\Artisan::call('optimize:clear');
+    \Illuminate\Support\Facades\Artisan::call('config:cache');
+});
 Route::get('/', function () {
     return view('welcome');
 });
