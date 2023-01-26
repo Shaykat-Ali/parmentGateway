@@ -5,24 +5,13 @@ use App\Http\Controllers\Backend\UserController;
 use App\Http\Controllers\Backend\PartnerController;
 use App\Http\Controllers\Backend\PartnerUserController;
 use App\Http\Controllers\Backend\AffiliateController;
+use App\Http\Controllers\Frontend\FrontendController;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
 Route::get('/cache',function(){
     \Illuminate\Support\Facades\Artisan::call('optimize:clear');
     \Illuminate\Support\Facades\Artisan::call('config:cache');
 });
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [FrontendController::class,'index']);
 
 Auth::routes();
 
